@@ -50,8 +50,9 @@ export default {
       axios.post('http://127.0.0.1:8000/login/', json)
       .then( data => {
        // console.log(data); // para ver si muestra datos
-        if(data.data.status == "ok"){
+        if(data.status == 201 ){
           console.log("todo correcto")
+          this.$router.push('panelView');
         }else{
           this.error=true;
           this.error_msg = data.message;

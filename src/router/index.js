@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import register from '../views/register.vue'
+import PanelView from '../views/PanelView.vue'
+import ClientesView from '../views/clientes/ClientesView.vue'
+import ClentesEditar from '../views/clientes/ClentesEditar.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,7 +18,23 @@ const routes = [
     name: 'register',
     component: register
   },
-
+                          /* Usuarios */
+  {
+    path: '/panelView',
+    name: 'PanelView',
+    component: PanelView
+  },
+                          /* Clientes */
+  {
+    path: '/clienteView',
+    name: 'ClientesView',
+    component: ClientesView
+  },
+  {
+    path: '/editarCliente/:id',
+    name: 'ClentesEditar',
+    component: ClentesEditar
+  },
 
 ]
 
