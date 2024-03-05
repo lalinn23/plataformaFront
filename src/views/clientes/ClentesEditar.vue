@@ -5,7 +5,7 @@
         <div class="row mt-5">
           <div class="col-md-6 offset-md-3">
             <div class="card shadow">
-              <div class="card-body text-left"> <!-- Aplicamos text-left aquí -->
+              <div class="card-body text-left">
                 <h2 class="card-title">Actualizar Cliente</h2>
                 <br>
                 <form>
@@ -15,10 +15,9 @@
                   </div>
                   <br>
                   <div class="form-group">
-                    <button type="buroton" class="btn btn-primary" v-on:click="editar()">Actualizar</button>
-                    <button type="buroton" class="btn btn-danger">Eliminar</button>
-                    <button type="buroton" class="btn btn-success">Atras</button>
-
+                    <button type="button" class="btn btn-primary" v-on:click="editar()">Actualizar</button>
+                    <button type="button" class="btn btn-danger" v-on:click="eliminarCliente()">Eliminar</button>
+                    <button type="button" class="btn btn-success" v-on:click="salir()">Atras</button>
                   </div>
                 </form>
               </div>
@@ -27,50 +26,66 @@
         </div>
       </div>
     </div>
-  </template>
-  
+</template>
 
 <script>
 import HeaderCompo from '@/components/HeaderCompo.vue';
 import axios from 'axios';
+
 export default {
-    name: "ClentesEditar",
-    components:{
+    name: "ClientesEditar",
+    components: {
         HeaderCompo
     },
-    data:function(){
-        return{
-            form:{
-                "id":"",
-                "nombre" : "",
+    data() {
+        return {
+            form: {
+                "id": "",
+                "nombre": ""
             }
-        }
+        };
     },
-    methods:{
-        editar(){
-            axios.put("http://127.0.0.1:8000/api/cliente/clientes/", this.form.id)
-            .then( data => {
-                console.log(data);
-            })
+    methods: {
+        editar() {
+            axios.patch("http://127.0.0.1:8000/api/cliente/clientes/" + this.form.id + "/", this.form)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error('Error al actualizar los datos:', error);
+                });
+        },
+        salir() {
+            this.$router.push("/clienteView");
+        },
+        eliminarCliente() {
+            axios.delete(`http://127.0.0.1:8000/api/cliente/clientes/${this.form.id}/`)
+                .then(response => {
+                    console.log('Cliente eliminado con éxito:', response.data);
+                    this.$router.push("/clienteView");
+                })
+                .catch(error => {
+                    console.error('Error al eliminar el cliente:', error);
+                });
         }
-    },
-    mounted:function(){
-        this.form.id = this.$route.params.id;
-        //console.log(this.id)
-        axios.get("http://127.0.0.1:8000/api/cliente/clientes/" + this.form.id)
-        .then( data => {
-            //console.log(data);
-            this.form.nombre = data.data.nombreC;
-            console.log(this.form);
-        })
-    }
 
+    },
+    mounted() {
+        this.form.id = this.$route.params.id;
+        axios.get("http://127.0.0.1:8000/api/cliente/clientes/" + this.form.id)
+            .then(data => {
+                this.form.nombre = data.data.nombreC;
+                // console.log(this.form);
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos del cliente:', error);
+            });
+    }
 }
 </script>
 
 <style scoped>
-.left{
+.left {
     text-align: left;
 }
-
 </style>
