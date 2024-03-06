@@ -5,6 +5,7 @@ import register from '../views/register.vue'
 import PanelView from '../views/PanelView.vue'
 import ClientesView from '../views/clientes/ClientesView.vue'
 import ClentesEditar from '../views/clientes/ClentesEditar.vue'
+import ClientesCrear from '../views/clientes/ClientesCrear.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,6 +30,11 @@ const routes = [
     path: '/clienteView',
     name: 'ClientesView',
     component: ClientesView
+  },
+  {
+    path: '/crearCliente',
+    name: 'CrearCliente',
+    component: ClientesCrear
   },
   {
     path: '/editarCliente/:id',

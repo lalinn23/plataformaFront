@@ -10,8 +10,8 @@
                 <br>
                 <form>
                   <div class="form-group ">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" v-model="form.nombre">
+                    <label for="nombreC">Nombre</label>
+                    <input type="text" class="form-control" id="nombreC" placeholder="Ingrese su nombre" v-model="form.nombreC">
                   </div>
                   <br>
                   <div class="form-group">
@@ -37,11 +37,11 @@ export default {
     components: {
         HeaderCompo
     },
-    data() {
+    data:function() {
         return {
             form: {
-                "id": "",
-                "nombre": ""
+                "id":"",
+                "nombreC": ""
             }
         };
     },
@@ -74,7 +74,7 @@ export default {
         this.form.id = this.$route.params.id;
         axios.get("http://127.0.0.1:8000/api/cliente/clientes/" + this.form.id)
             .then(data => {
-                this.form.nombre = data.data.nombreC;
+                this.form.nombreC = data.data.nombreC;
                 // console.log(this.form);
             })
             .catch(error => {

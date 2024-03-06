@@ -1,10 +1,13 @@
 <template>
   <div>
-    <h1></h1>
+
     <HeaderCompo/>
     <h1>Lista clientes</h1>
 
     <div class="container">
+      <button class="btn btn-success align-right" v-on:click="crear()">Nuevo cliente</button>
+
+      <br>
         <table class="table table-hover">
   <thead>
     <tr>
@@ -40,6 +43,9 @@ export default {
         HeaderCompo,
     },
     methods:{
+      crear(){
+        this.$router.push('/crearCliente');
+      },
       editar(id){
         //console.log(id)
         this.$router.push('/editarCliente/' + id);
@@ -55,6 +61,9 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style  scoped>
+.align-right {
+    float: right;
+}
 
 </style>
