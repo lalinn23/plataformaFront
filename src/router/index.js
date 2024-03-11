@@ -6,6 +6,13 @@ import PanelView from '../views/PanelView.vue'
 import ClientesView from '../views/clientes/ClientesView.vue'
 import ClentesEditar from '../views/clientes/ClentesEditar.vue'
 import ClientesCrear from '../views/clientes/ClientesCrear.vue'
+import ProyectsView from '../views/proyectos/ProyectsView.vue'
+import ProyectsCrear from '../views/proyectos/ProyectsCrear.vue'
+import ProyectsEditar from '../views/proyectos/ProyectsEditar.vue'
+import FasesView from '../views/fases/FasesView.vue'
+import FasesCrear from '../views/fases/FasesCrear.vue'
+import EtapasView from '../views/etapas/EtapasView.vue'
+import EtapasCrear from '../views/etapas/EtapasCrear.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,6 +48,49 @@ const routes = [
     name: 'ClentesEditar',
     component: ClentesEditar
   },
+
+                        /*Proyectos */
+  {
+    path: '/proyectView',
+    name: 'ProyectsView',
+    component: ProyectsView
+  },
+  {
+    path: '/crearProyects',
+    name: 'ProyectsCrear',
+    component: ProyectsCrear
+  },
+  {
+    path: '/editarProyects/:id',
+    name: 'ProyectsEditar',
+    component: ProyectsEditar
+  },
+
+                        /*Proyectos */
+  {
+    path: '/FasesView',
+    name: 'FasesView',
+    component: FasesView
+  },
+  {
+    path: '/crearFases',
+    name: 'FasesCrear',
+    component: FasesCrear
+  },
+
+                            /*Etapas */
+  
+  {
+    path: '/etapasView',
+    name: 'EtapasView',
+    component: EtapasView
+  },
+  {
+    path: '/etapasCrear',
+    name: 'EtapasCrear',
+    component: EtapasCrear
+  },
+
 
 ]
 

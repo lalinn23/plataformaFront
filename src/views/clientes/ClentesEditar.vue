@@ -50,6 +50,8 @@ export default {
             axios.patch("http://127.0.0.1:8000/api/cliente/clientes/" + this.form.id + "/", this.form)
                 .then(response => {
                     console.log(response.data);
+                    this.$router.push("/clienteView");
+
                 })
                 .catch(error => {
                     console.error('Error al actualizar los datos:', error);

@@ -7,13 +7,13 @@
       <!-- Navbar dropdowns -->
       <b-nav-item-dropdown text="Menu" right>
           <b-dropdown-item href="/clienteView">Clientes</b-dropdown-item>
-          <b-dropdown-item href="#">Proyectos</b-dropdown-item>
+          <b-dropdown-item href="/proyectView">Proyectos</b-dropdown-item>
           <b-dropdown-item href="#">Actividades</b-dropdown-item>
-          <b-dropdown-item href="#">Etapas</b-dropdown-item>
-          <b-dropdown-item href="#">Fases</b-dropdown-item>
+          <b-dropdown-item href="/etapasView">Etapas</b-dropdown-item>
+          <b-dropdown-item href="/FasesView">Fases</b-dropdown-item>
 
       </b-nav-item-dropdown>
-
+  
       <b-nav-item-dropdown text="User" right>
         <b-dropdown-item href="#">Account</b-dropdown-item>
         <b-dropdown-item href="#">Settings</b-dropdown-item>
