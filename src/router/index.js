@@ -13,6 +13,7 @@ import FasesView from '../views/fases/FasesView.vue'
 import FasesCrear from '../views/fases/FasesCrear.vue'
 import EtapasView from '../views/etapas/EtapasView.vue'
 import EtapasCrear from '../views/etapas/EtapasCrear.vue'
+import ActividadView from '../views/actividades/ActividadView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -89,6 +90,13 @@ const routes = [
     path: '/etapasCrear',
     name: 'EtapasCrear',
     component: EtapasCrear
+  },
+
+  /*Actividades */
+  {
+    path: '/actividadView',
+    name: 'ActividadView',
+    component: ActividadView
   },
 
 
