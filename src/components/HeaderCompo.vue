@@ -8,7 +8,7 @@
       <b-nav-item-dropdown text="Menu" right>
           <b-dropdown-item href="/clienteView">Clientes</b-dropdown-item>
           <b-dropdown-item href="/proyectView">Proyectos</b-dropdown-item>
-          <b-dropdown-item href="#">Actividades</b-dropdown-item>
+          <b-dropdown-item href="/actividadView">Actividades</b-dropdown-item>
           <b-dropdown-item href="/etapasView">Etapas</b-dropdown-item>
           <b-dropdown-item href="/FasesView">Fases</b-dropdown-item>
 

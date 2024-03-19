@@ -1,86 +1,67 @@
 <template>
   <div>
     <HeaderCompo />
-  <div class="container">
-    <div class="card mt-5">
-      <div class="card-body">
-        <form @submit.prevent="crearProyecto">
-          <legend class="mb-4">Crear Proyectos</legend>
-          <div class="mb-3">
-            <label for="nombreP" class="form-label">Nombre del proyecto</label>
-            <input type="text" v-model="nombreP" class="form-control" id="nombreP" name="nombreP" placeholder="Nombre del proyecto">
-          </div>
-          <div class="mb-3">
-            <label for="cliente" class="form-label">Clientes</label>
-            <select v-model="clienteSeleccionado" id="cliente" name="cliente" class="form-select">
-              <option disabled value="">Selecciona el cliente</option>
-              <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.id }}</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Crear Proyecto</button>
-        </form>
+    <h2>Crear Nuevo Proyecto</h2>
+    <form @submit.prevent="crearProyecto">
+      <div class="form-group">
+        <label for="nombre">Nombre del Proyecto:</label>
+        <input type="text" id="nombre" v-model="nombreProyecto" class="form-control">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="cliente">Cliente:</label>
+        <select v-model="clienteSeleccionado" class="form-control">
+          <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.nombreC }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Proyecto</button>
+    </form>
   </div>
-</div>
 </template>
 
 <script>
-import HeaderCompo from '@/components/HeaderCompo.vue';
+import HeaderCompo from '@/components/HeaderCompo.vue'
 import axios from 'axios';
 
 export default {
-  name: "ClientesEditar",
-  components: {
-    HeaderCompo
-  },
+  name: "PanelView",
   data() {
     return {
-      nombreP: '',
+      nombreProyecto: '',
       clienteSeleccionado: null,
       clientes: []
     };
   },
-  created() {
-    this.obtenerClientes();
+  components: {
+    HeaderCompo
+  },
+  mounted() {
+    this.fetchClientes();
   },
   methods: {
-    obtenerClientes() {
+    fetchClientes() {
       axios.get('http://127.0.0.1:8000/api/cliente/clientes/')
         .then(response => {
           this.clientes = response.data;
         })
         .catch(error => {
-          console.error('Error al obtener clientes:', error);
+          console.error('Error al obtener clientes: ', error);
         });
     },
     crearProyecto() {
-      const datosProyecto = {
-        nombreP: this.nombreP,
-        cliente: this.clienteSeleccionado
+      const proyecto = {
+        nombreP: this.nombreProyecto,
+        cliente_id: this.clienteSeleccionado
       };
-
-      axios.post('http://127.0.0.1:8000/proyectos/', datosProyecto)
+      axios.post('http://127.0.0.1:8000/api/proyectos/', proyecto)
         .then(response => {
-          console.log('Proyecto creado exitosamente:', response.data);
+          console.log('Proyecto creado:', response.data);
+          // Aquí puedes redirigir a otra página o hacer cualquier otra acción después de crear el proyecto
+          this.$router.push("/proyectView");
         })
         .catch(error => {
-          console.error('Error al crear el proyecto:', error);
+          console.error('Error al crear proyecto: ', error);
         });
     }
   }
-}
+};
 </script>
-
-<style scoped>
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.card {
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-</style>
