@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderCompo/>
-    <h1>Usuarios</h1>
+    <h1>Lista De Usuarios</h1>
     <div class="container">
       <table class="table table-hover">
         <thead>

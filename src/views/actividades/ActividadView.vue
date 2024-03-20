@@ -1,10 +1,10 @@
 <template>
   <div>
     <HeaderCompo/>
-    <h1>Actividades</h1>
+    <h1>Lista De Actividades</h1>
     <div class="container">
-        <button class="btn btn-success align-right" v-on:click="crear()">Agregar</button>
-  
+        <button class="btn btn-success align-right" v-on:click="crear()">Agregar Actividad</button>
+        <br>
         <br>
     <div class="container">
         <table class="table table-hover">
