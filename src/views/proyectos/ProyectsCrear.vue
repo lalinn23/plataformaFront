@@ -1,20 +1,34 @@
 <template>
   <div>
     <HeaderCompo />
-    <h2>Crear Nuevo Proyecto</h2>
-    <form @submit.prevent="crearProyecto">
-      <div class="form-group">
-        <label for="nombre">Nombre del Proyecto:</label>
-        <input type="text" id="nombre" v-model="nombreProyecto" class="form-control">
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card shadow" style="width: 453.79px; height: 333.26px;"> <!-- Agregado: estilos en línea -->
+            <div class="card-body">
+              <h2 class="card-title text-center mb-4">Crear Nuevo Proyecto</h2>
+              <form @submit.prevent="crearProyecto">
+                <div class="form-group">
+                  <label for="nombre">Nombre del Proyecto:</label>
+                  <input type="text" id="nombre" v-model="nombreProyecto" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="cliente">Cliente:</label>
+                  <select v-model="clienteSeleccionado" class="form-control">
+                    <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.nombreC }}</option>
+                  </select>
+                </div>
+                <br>
+                <div class="d-grid gap-2 mb-2">
+                  <button type="submit" class="btn btn-primary btn-block">Crear Proyecto</button>
+                  <button type="submit" class="btn btn-success btn-block"  v-on:click="salir()">Atrás</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="cliente">Cliente:</label>
-        <select v-model="clienteSeleccionado" class="form-control">
-          <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.nombreC }}</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Crear Proyecto</button>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -46,6 +60,10 @@ export default {
         .catch(error => {
           console.error('Error al obtener clientes: ', error);
         });
+    },
+    salir() {
+            this.$router.push("/proyectView");
+
     },
     crearProyecto() {
       const proyecto = {

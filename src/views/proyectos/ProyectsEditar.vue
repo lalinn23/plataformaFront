@@ -1,33 +1,36 @@
 <template>
   <div>
     <HeaderCompo />
-    <div class="container">
-      <div class="card mt-5">
-        <div class="card-body">
-          <form @submit.prevent="editarProyecto">
-            <legend class="mb-4">Actualizar Proyecto</legend>
-            <div class="mb-3">
-              <label for="nombreP" class="form-label">Nombre del proyecto</label>
-              <input type="text" v-model="nombreP" class="form-control" id="nombreP" name="nombreP" placeholder="Nombre del proyecto">
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card mt-5 shadow" style="width: 453.79px; height: 380.26px;"> <!-- Agregamos las clases y estilos -->
+            <div class="card-body">
+              <h2 class="card-title text-center mb-4">Actualizar Proyecto</h2> <!-- Modificado el título -->
+              <form @submit.prevent="editarProyecto">
+                <div class="mb-3">
+                  <label for="nombreP" class="form-label">Nombre del proyecto</label>
+                  <input type="text" v-model="form.nombreP" class="form-control" id="nombreP" name="nombreP" placeholder="Nombre del proyecto">
+                </div>
+                <div class="mb-3">
+                  <label for="cliente" class="form-label">Cliente</label>
+                  <select v-model="form.clienteSeleccionado" id="cliente" name="cliente" class="form-select">
+                    <option disabled value="">Selecciona el cliente</option>
+                    <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.nombreC }}</option>
+                  </select>
+                </div>
+                <div class="d-grid gap-2 mb-2">
+                  <button type="submit" class="btn btn-primary btn-block">Actualizar Proyecto</button>
+                  <button type="button" class="btn btn-success btn-block" @click="salir">Atrás</button>
+              </div>
+              </form>
             </div>
-            <div class="mb-3">
-              <label for="cliente" class="form-label">Cliente</label>
-              <select v-model="clienteSeleccionado" id="cliente" name="cliente" class="form-select">
-                <option disabled value="">Selecciona el cliente</option>
-                <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.nombre }}</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Actualizar Proyecto</button>
-            <button type="button" class="btn btn-danger" v-on:click="eliminarProyecto()">Eliminar Proyecto</button>
-            <button type="button" class="btn btn-success" v-on:click="salir()">Atrás</button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import HeaderCompo from '@/components/HeaderCompo.vue';
 import axios from 'axios';
@@ -39,20 +42,20 @@ export default {
   },
   data() {
     return {
-      nombreP: '',
-      clienteSeleccionado: null,
+      form: {
+        nombreP: '',
+        clienteSeleccionado: null,
+      },
+      idProyecto: null,
       clientes: [],
-      idProyecto: null
     };
   },
   methods: {
     editarProyecto() {
-      const datosProyecto = {
-        nombreP: this.nombreP,
-        cliente: this.clienteSeleccionado
-      };
-
-      axios.patch(`http://127.0.0.1:8000/proyectos/${this.idProyecto}/`, datosProyecto)
+      axios.patch(`http://127.0.0.1:8000/api/proyectos/${this.idProyecto}/`, {
+        nombreP: this.form.nombreP,
+        cliente_id: this.form.clienteSeleccionado // Envía solo el ID del cliente
+      })
         .then(response => {
           console.log('Proyecto actualizado con éxito:', response.data);
           this.$router.push("/proyectView");
@@ -61,26 +64,17 @@ export default {
           console.error('Error al actualizar el proyecto:', error);
         });
     },
-    eliminarProyecto() {
-      axios.delete(`http://127.0.0.1:8000/proyectos/${this.idProyecto}/`)
-        .then(response => {
-          console.log('Proyecto eliminado con éxito:', response.data);
-          this.$router.push("/proyectView");
-        })
-        .catch(error => {
-          console.error('Error al eliminar el proyecto:', error);
-        });
-    },
+
     salir() {
       this.$router.push("/proyectView");
     },
     obtenerDatosProyecto() {
       this.idProyecto = this.$route.params.id;
-      axios.get(`http://127.0.0.1:8000/proyectos/${this.idProyecto}`)
+      axios.get(`http://127.0.0.1:8000/api/proyectos/${this.idProyecto}/`)
         .then(response => {
           const proyecto = response.data;
-          this.nombreP = proyecto.nombreP;
-          this.clienteSeleccionado = proyecto.cliente;
+          this.form.nombreP = proyecto.nombreP;
+          this.form.clienteSeleccionado = proyecto.cliente.id; // Asigna el ID del cliente
         })
         .catch(error => {
           console.error('Error al obtener los datos del proyecto:', error);
