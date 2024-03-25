@@ -19,21 +19,14 @@
                   <div class="col-12">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" name="username" id="username" placeholder="Username" v-model="username" required>
-                      <label for="username" class="form-label">Username</label>
-                    </div>
-                  </div>
-  
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" v-model="first_name" required>
-                      <label for="first_name" class="form-label">First Name</label>
+                      <label for="username" class="form-label">Nombre</label>
                     </div>
                   </div>
   
                   <div class="col-12">
                     <div class="form-floating mb-3">
                       <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" v-model="last_name" required>
-                      <label for="last_name" class="form-label">Last Name</label>
+                      <label for="last_name" class="form-label">Apellidos</label>
                     </div>
                   </div>
   
@@ -90,7 +83,6 @@ export default {
   data: function() {
     return {
       username: "",
-      first_name:"",
       last_name:"",
       email:"",
       puesto:"",
@@ -103,7 +95,6 @@ export default {
     login(){
       let json = {
         "username": this.username,
-        "first_name": this.first_name,
         "last_name":this.last_name,
         "email": this.email,
         "puesto": this.puesto,

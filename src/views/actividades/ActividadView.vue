@@ -30,7 +30,7 @@
     <tr v-for="actividad in actividades" :key="actividad.id">
       <th scope="row">{{ actividad.id }}</th>
       <td>{{ actividad.lider}}</td>
-      <td>{{ actividad.user}}</td>
+      <td>{{ actividad.user ? actividad.user.username : 'N/A'}}</td>
       <td>{{ actividad.created_at}}</td>
       <td>{{ actividad.proyecto ? actividad.proyecto.nombreP : 'N/A'}}</td>
       <td>{{ actividad.actividad}}</td>

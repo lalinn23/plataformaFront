@@ -17,7 +17,7 @@
         <tbody>
           <tr v-for="cliente in ListaClientes" :key="cliente.id">
             <th scope="row">{{ cliente.id }}</th>
-            <td>{{ cliente.first_name}}</td>
+            <td>{{ cliente.username}}</td>
             <td>{{ cliente.last_name}}</td>
             <td>{{ cliente.email}}</td>
             <td>{{ cliente.puesto}}</td>
