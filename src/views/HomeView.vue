@@ -71,26 +71,28 @@
       "password": this.password
     };
     axios.post('http://127.0.0.1:8000/login/', json)
-      .then(data => {
-        console.log(data); 
-        if (data.status === 200) {
-          console.log("Inicio de sesión correcto");
-          //Guardamos el rol del usuario  en localStorage
-          localStorage.setItem('useRole', data.role);
-
-          //redirrecionamos segun el rol
-          this.$router.push('/panelView');
-
-        } else {
-          this.error = true;
-          this.error_msg = data.response.data.error; // Cambiar a la respuesta del error adecuada
-        }
-      })
-      .catch(error => {
-        console.error('Error durante la solicitud:', error);
-        this.error = true;
-        this.error_msg = "Credenciales Incorrectas";
-      });
+    .then(response => {
+      console.log(response);
+    if (response.data.authenticated) {
+      console.log("Inicio de sesión correcto");
+      //Guardamos el rol del usuario en localStorage
+      localStorage.setItem('userRole', response.data.role);
+      //redireccionamos según el rol
+      if (response.data.role === 'admin') {
+        this.$router.push('/panelView');
+      } else {
+        this.$router.push('/actividadView');
+      }
+    } else {
+      this.error = true;
+      this.error_msg = response.data.message;
+    }
+  })
+  .catch(error => {
+    console.error('Error durante la solicitud:', error);
+    this.error = true;
+    this.error_msg = "Credenciales Incorrectas";
+  });
   }
 }
   }

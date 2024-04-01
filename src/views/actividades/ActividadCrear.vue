@@ -1,6 +1,6 @@
 <template>
 <div>
-  <HeaderCompo/>
+  <HeaderUser/>
 
   <div class="container">
     <div class="row justify-content-center">
@@ -73,7 +73,7 @@
 
   
   <script>
-  import HeaderCompo from '@/components/HeaderCompo.vue';
+  import HeaderUser from '@/components/HeaderUser.vue';
   import axios from 'axios';
   
   export default {
@@ -95,7 +95,7 @@
       };
     },
     components:{
-      HeaderCompo,
+      HeaderUser,
     },
     mounted() {
       this.fetchUsers();

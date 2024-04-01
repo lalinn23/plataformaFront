@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderCompo/>
+    <HeaderUser/>
     <h1>Lista De Actividades</h1>
     <div class="container">
         <button class="btn btn-success align-right" v-on:click="crear()">Agregar Actividad</button>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import HeaderCompo from '@/components/HeaderCompo.vue';
+import HeaderUser from '@/components/HeaderUser.vue';
 import axios from 'axios';
 
 export default {
@@ -61,7 +61,7 @@ export default {
       };
     },
     components:{
-        HeaderCompo,
+      HeaderUser,
     },
     mounted(){
      this.fetchProyectos();
