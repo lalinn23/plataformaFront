@@ -65,32 +65,34 @@
       }
     },
     methods: {
-      login() {
-        let json = {
-          "email": this.email,
-          "password": this.password
-        };
-        axios.post('http://127.0.0.1:8000/login/', json)
-          .then(data => {
-            console.log(data); 
-            if (data.status === 200) {
-              console.log("Inicio de sesión correcto");
-              this.$router.push('/panelView');
-              // Aquí deberías manejar la respuesta del servidor, por ejemplo,
-              // guardar el token de acceso en el almacenamiento local y redirigir
-              // al usuario a otra página.
-            } else {
-              this.error = true;
-              this.error_msg = data.response.data.error; // Cambiar a la respuesta del error adecuada
-            }
-          })
-          .catch(error => {
-            console.error('Error durante la solicitud:', error);
-            this.error = true;
-            this.error_msg = "Credenciales Incorrectas";
-          });
-      }
-    }
+  login() {
+    let json = {
+      "email": this.email,
+      "password": this.password
+    };
+    axios.post('http://127.0.0.1:8000/login/', json)
+      .then(data => {
+        console.log(data); 
+        if (data.status === 200) {
+          console.log("Inicio de sesión correcto");
+          //Guardamos el rol del usuario  en localStorage
+          localStorage.setItem('useRole', data.role);
+
+          //redirrecionamos segun el rol
+          this.$router.push('/panelView');
+
+        } else {
+          this.error = true;
+          this.error_msg = data.response.data.error; // Cambiar a la respuesta del error adecuada
+        }
+      })
+      .catch(error => {
+        console.error('Error durante la solicitud:', error);
+        this.error = true;
+        this.error_msg = "Credenciales Incorrectas";
+      });
+  }
+}
   }
   </script>
   
