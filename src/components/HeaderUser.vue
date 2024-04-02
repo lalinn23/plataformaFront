@@ -2,7 +2,7 @@
     <div>
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav>
-          <b-nav-item href="/panelView">Administrador de reportes</b-nav-item>
+          <b-nav-item href="/actividadView">Administrador de reportes</b-nav-item>
   
           <!-- Navbar dropdowns -->
           <b-nav-item-dropdown text="Menu" right>
