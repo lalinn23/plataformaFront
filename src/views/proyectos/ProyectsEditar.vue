@@ -6,7 +6,7 @@
         <div class="col-md-6">
           <div class="card mt-5 shadow" style="width: 453.79px; height: 380.26px;"> <!-- Agregamos las clases y estilos -->
             <div class="card-body">
-              <h2 class="card-title text-center mb-4">Actualizar Proyecto</h2> <!-- Modificado el título -->
+              <h1 class="card-title text-center mb-4">Actualizar Proyecto</h1> <!-- Modificado el título -->
               <form @submit.prevent="editarProyecto">
                 <div class="mb-3">
                   <label for="nombreP" class="form-label">Nombre del proyecto</label>

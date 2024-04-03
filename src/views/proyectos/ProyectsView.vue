@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderCompo />
-    <h2>Lista de Proyectos</h2>
+    <h1>Lista de Proyectos</h1>
     <div class="container">
         <button class="btn btn-success align-right" v-on:click="crear()">Agregar</button>
         <br>

@@ -6,7 +6,7 @@
         <div class="col-md-6">
           <div class="card shadow" style="width: 453.79px; height: 333.26px;"> <!-- Agregado: estilos en línea -->
             <div class="card-body">
-              <h2 class="card-title text-center mb-4">Crear Nuevo Proyecto</h2>
+              <h1 class="card-title text-center mb-4">Crear Nuevo Proyecto</h1>
               <form @submit.prevent="crearProyecto">
                 <div class="form-group">
                   <label for="nombre">Nombre del Proyecto:</label>

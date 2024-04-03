@@ -6,7 +6,7 @@
         <div class="col-md-6 offset-md-3">
           <div class="card shadow" style="width: 453.79px; height: 333.26px;">
             <div class="card-body text-left">
-              <h2 class="card-title">Crear Cliente</h2>
+              <h1 class="card-title">Crear Cliente</h1>
               <br>
               <form>
                 <div class="form-group ">

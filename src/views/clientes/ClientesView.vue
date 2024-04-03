@@ -13,12 +13,16 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="cliente in ListaClientes" :key="cliente.id" v-on:click="editar(cliente.id)">
+          <tr v-for="cliente in ListaClientes" :key="cliente.id" >
             <th scope="row">{{ cliente.id }}</th>
             <td>{{ cliente.nombreC }}</td>
+            <td>
+                <button class="btn btn-success" v-on:click="editar(cliente.id)">Editar</button>
+            </td>
           </tr>
 
         </tbody>
@@ -46,14 +50,13 @@ export default {
     crear() {
       this.$router.push('/crearCliente');
     },
+    
     editar(id) {
-      //console.log(id)
       this.$router.push('/editarCliente/' + id);
     }
   },
   mounted: function () {
     let clientes = "http://127.0.0.1:8000/api/cliente/clientes/";
-    // console.log(data);
     axios.get(clientes).then(data => {
       this.ListaClientes = data.data;
     });

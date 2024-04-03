@@ -6,7 +6,7 @@
         <div class="col-md-6 offset-md-3">
           <div class="card shadow">
             <div class="card-body text-left">
-              <h2 class="card-title">Actualizar Cliente</h2>
+              <h1 class="card-title">Actualizar Cliente</h1>
               <br>
               <form>
                 <div class="form-group ">

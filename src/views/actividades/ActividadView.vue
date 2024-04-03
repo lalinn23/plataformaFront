@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderUser />
-    <h1>Lista De Actividades</h1>
+    <h1>Bitacora De Actividades</h1>
     <div class="container">
       <button class="btn btn-success align-right" v-on:click="crear()">Agregar Actividad</button>
       <br><br>
@@ -22,7 +22,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="actividad in actividades" :key="actividad.id">
+            <tr v-for="actividad in actividades" :key="actividad.id" v-on:click="editar(actividad.id)">
               <th scope="row">{{ actividad.id }}</th>
               <td>{{ actividad.lider }}</td>
               <td>{{ actividad.user ? actividad.user.username : 'N/A' }}</td>
@@ -64,6 +64,9 @@ export default {
     this.fetchProyectos();
   },
   methods: {
+    editar(id){
+      this.$router.push('/actividadEditar/' + id);
+    },
     crear() {
       this.$router.push('/actividadCrear');
     },
