@@ -2,11 +2,11 @@
   <div>
 
     <HeaderCompo />
-    <h1>Lista clientes</h1>
+    <h1 class="titulo">LISTADO DE <span class="resaltado">CLIENTES</span></h1>
 
     <div class="container">
       <button class="btn btn-success align-right" v-on:click="crear()">Nuevo cliente</button>
-
+      <br>
       <br>
       <table class="table table-hover">
         <thead>
@@ -17,11 +17,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="cliente in ListaClientes" :key="cliente.id" >
+          <tr v-for="cliente in ListaClientes" :key="cliente.id">
             <th scope="row">{{ cliente.id }}</th>
             <td>{{ cliente.nombreC }}</td>
             <td>
-                <button class="btn btn-success" v-on:click="editar(cliente.id)">Editar</button>
+              <button class="btn btn-primary" v-on:click="editar(cliente.id)">Editar</button>
             </td>
           </tr>
 
@@ -50,7 +50,7 @@ export default {
     crear() {
       this.$router.push('/crearCliente');
     },
-    
+
     editar(id) {
       this.$router.push('/editarCliente/' + id);
     }
@@ -67,5 +67,20 @@ export default {
 <style scoped>
 .align-right {
   float: right;
+}
+
+/* H1*/
+h1 {
+  font-family: fantasy;
+}
+
+.titulo {
+  color: black;
+  /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f;
+  /* Color verde para la palabra "clientes" */
 }
 </style>

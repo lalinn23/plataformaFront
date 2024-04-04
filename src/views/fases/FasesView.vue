@@ -1,11 +1,11 @@
 <template>
     <div>
       <HeaderCompo />
-      <h1>Fases</h1>
+      <h1 class="titulo">Catalogo De <span class="resaltado">Fases</span></h1>
   
       <div class="container">
         <button class="btn btn-success align-right" v-on:click="crear()">Agregar</button>
-  
+        <br>
         <br>
         <table class="table table-hover">
           <thead>
@@ -76,8 +76,22 @@
   </script>
   
   <style scoped>
-  .align-right {
-    float: right;
-  }
-  </style>
-  
+.align-right {
+  float: right;
+}
+
+/* H1*/
+h1 {
+  font-family: fantasy;
+}
+
+.titulo {
+  color: black;
+  /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f;
+  /* Color verde para la palabra "clientes" */
+}
+</style>

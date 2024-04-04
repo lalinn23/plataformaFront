@@ -6,23 +6,19 @@
         <div class="col-md-6 offset-md-3">
           <div class="card shadow" style="width: 453.79px; height: 333.26px;">
             <div class="card-body text-left">
-              <h1 class="card-title">Crear Cliente</h1>
+              <h1 class="card-title">Agregar <span class="resaltado">Cliente</span></h1>
               <br>
               <form>
                 <div class="form-group ">
                   <label for="nombreC">Nombre</label>
-                  <input type="text" class="form-control" id="nombreC" placeholder="Ingrese su nombre" required
+                  <input type="text" class="form-control" id="nombreC" placeholder="Nombre del cliente" required
                     v-model="form.nombreC">
                 </div>
                 
                 <br>
-                <div class="d-grid">
-                  <button type="button" class="btn btn-primary" v-on:click="crear()">Crear</button>
-                 
-                </div>
-                <br>
-                <div class="d-grid">
-                  <button type="button" class="btn btn-success" v-on:click="salir()">Atras</button>
+                <div class="d-grid gap-2 mb-2">
+                    <button type="button" class="btn btn-primary  separado" v-on:click="crear()">Crear</button>
+                    <button type="button" class="btn btn-success separado" v-on:click="salir()">Atrás</button>
                 </div>
               </form>
             </div>
@@ -74,4 +70,20 @@ export default {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+h1{
+  font-family: fantasy;
+}
+.titulo {
+    color: black; /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f; /* Color verde para la palabra "clientes" */
+}
+.separado {
+    margin-right: 20px; /* Ajusta el margen derecho para separar los botones */
+    margin-bottom: 10px;
+}
+
+</style>

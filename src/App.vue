@@ -7,12 +7,15 @@
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+ /* font-family: Avenir, Helvetica, Arial, sans-serif;*/
+  height: 100vh; /* Establece la altura al 100% de la altura de la ventana */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   
-  color: #4c4e4c;
+  color: #f9fff9;
+  background: rgba(130, 160, 130, 0.1);
 }
+
 h1 {
   text-align: center;
 }

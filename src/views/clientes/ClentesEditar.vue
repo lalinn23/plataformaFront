@@ -4,9 +4,10 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-6 offset-md-3">
-          <div class="card shadow">
+          <div class="card mt-5 shadow" style="width: 453.79px; height: 380.26px;">
             <div class="card-body text-left">
-              <h1 class="card-title">Actualizar Cliente</h1>
+              <h1 class="card-title">Actualizar <span class="resaltado">Cliente</span></h1>
+              
               <br>
               <form>
                 <div class="form-group ">
@@ -15,7 +16,7 @@
                     v-model="form.nombreC">
                 </div>
                 <br>
-                <div class="form-group">
+                <div class="d-grid gap-2 mb-2" >
                   <button type="button" class="btn btn-primary" v-on:click="editar()">Actualizar</button>
                   <button type="button" class="btn btn-danger" v-on:click="eliminarCliente()">Eliminar</button>
                   <button type="button" class="btn btn-success" v-on:click="salir()">Atras</button>
@@ -91,4 +92,17 @@ export default {
 .left {
   text-align: left;
 }
+
+/* H1*/ 
+h1{
+  font-family: fantasy;
+}
+.titulo {
+    color: black; /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f; /* Color verde para la palabra "clientes" */
+}
+
 </style>

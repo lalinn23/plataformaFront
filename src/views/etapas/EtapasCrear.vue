@@ -4,9 +4,10 @@
      <div class="container">
        <div class="row mt-5">
          <div class="col-md-6 offset-md-3">
-           <div class="card shadow">
+           <div class="card shadow" style="width: 453.79px; height: 333.26px;">
              <div class="card-body text-left">
-               <h2 class="card-title">Crear Etapa</h2>
+               <h1 class="card-title">Agregar <span class="resaltado">Cliente</span></h1>
+
                <br>
                <form>
                  <div class="form-group ">
@@ -14,7 +15,7 @@
                    <input type="text" class="form-control" id="nombreE" placeholder="Ingrese la etapa" v-model="form.nombreE">
                  </div>
                  <br>
-                 <div class="form-group">
+                 <div class="d-grid gap-2 mb-2">
                    <button type="button" class="btn btn-primary" v-on:click="crear()">Crear</button>
                    <button type="button" class="btn btn-success" v-on:click="salir()">Atras</button>
                  </div>
@@ -67,5 +68,19 @@ export default{
 </script>
 
 <style scoped>
+h1{
+  font-family: fantasy;
+}
+.titulo {
+    color: black; /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f; /* Color verde para la palabra "clientes" */
+}
+.separado {
+    margin-right: 20px; /* Ajusta el margen derecho para separar los botones */
+    margin-bottom: 10px;
+}
 
 </style>
