@@ -1,13 +1,12 @@
 <template>
   <div>
     <HeaderUser />
-
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="card shadow">
             <div class="card-body">
-              <h2 class="text-center mb-4">Crear Nueva Actividad</h2>
+              <h1 class="card-title">Crear Nueva <span class="resaltado">Actividad</span></h1>
               <form @submit.prevent="crearActividad">
 
                 <div class="mb-3" style="text-align: left;">
@@ -201,6 +200,21 @@ export default {
 
 
 <style scoped>
+h1{
+  font-family: fantasy;
+}
+.titulo {
+    color: black; /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f; /* Color verde para la palabra "clientes" */
+}
+.separado {
+    margin-right: 20px; /* Ajusta el margen derecho para separar los botones */
+    margin-bottom: 10px;
+}
+
 .form-label {
   color: black !important;
   font-weight: normal !important;

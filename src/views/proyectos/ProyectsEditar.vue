@@ -6,7 +6,8 @@
         <div class="col-md-6">
           <div class="card mt-5 shadow" style="width: 453.79px; height: 380.26px;"> <!-- Agregamos las clases y estilos -->
             <div class="card-body">
-              <h1 class="card-title text-center mb-4">Actualizar Proyecto</h1> <!-- Modificado el título -->
+              <h1 class="card-title">Actualizar <span class="resaltado">Proyecto</span></h1>
+
               <form @submit.prevent="editarProyecto">
                 <div class="mb-3">
                   <label for="nombreP" class="form-label">Nombre del proyecto</label>
@@ -100,5 +101,16 @@ export default {
 <style scoped>
 .left {
   text-align: left;
+}
+/* H1*/ 
+h1{
+  font-family: fantasy;
+}
+.titulo {
+    color: black; /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f; /* Color verde para la palabra "clientes" */
 }
 </style>

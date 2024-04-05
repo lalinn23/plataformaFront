@@ -1,10 +1,12 @@
 <template>
   <div>
     <HeaderUser />
-    <h1>Bitacora De Actividades</h1>
+    <h1 class="titulo">Bitacora De <span class="resaltado">Actividades</span></h1>
+
     <div class="container">
       <button class="btn btn-success align-right" v-on:click="crear()">Agregar Actividad</button>
-      <br><br>
+      <br>
+      <br>
       <div class="container">
         <table class="table table-hover">
           <thead>
@@ -22,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="actividad in actividades" :key="actividad.id" v-on:click="editar(actividad.id)">
+            <tr v-for="actividad in actividadesPaginadas" :key="actividad.id" v-on:click="editar(actividad.id)">
               <th scope="row">{{ actividad.id }}</th>
               <td>{{ actividad.lider }}</td>
               <td>{{ actividad.user ? actividad.user.username : 'N/A' }}</td>
@@ -40,6 +42,20 @@
             </tr>
           </tbody>
         </table>
+        <!-- Paginación -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-end">
+            <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+              <a class="page-link" @click="prevPage()">Previous</a>
+            </li>
+            <li v-for="pageNumber in totalPages" :key="pageNumber" class="page-item" :class="{ 'active': pageNumber === currentPage }">
+              <a class="page-link" @click="changePage(pageNumber)">{{ pageNumber }}</a>
+            </li>
+            <li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+              <a class="page-link" @click="nextPage()">Next</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -55,6 +71,9 @@ export default {
     return {
       actividades: [],
       totalHoras: 0,
+      currentPage: 1,
+      pageSize: 8,
+      orderBy: 'created_at', // Cambiado a ordenar por fecha
     };
   },
   components: {
@@ -62,6 +81,15 @@ export default {
   },
   mounted() {
     this.fetchProyectos();
+  },
+  computed: {
+    actividadesPaginadas() {
+      const startIndex = (this.currentPage - 1) * this.pageSize;
+      return this.actividades.slice(startIndex, startIndex + this.pageSize);
+    },
+    totalPages() {
+      return Math.ceil(this.actividades.length / this.pageSize);
+    },
   },
   methods: {
     editar(id){
@@ -71,18 +99,41 @@ export default {
       this.$router.push('/actividadCrear');
     },
     fetchProyectos() {
-      axios.get('http://127.0.0.1:8000/api/actividad/')
-        .then(response => {
-          this.actividades = response.data;
-          this.totalHoras = this.calcularTotalHoras(response.data);
-        })
-        .catch(error => {
-          console.error('Error al obtener proyectos: ', error);
-        });
+      axios.get('http://127.0.0.1:8000/api/actividad/', {
+        params: {
+          page: this.currentPage,
+          pageSize: this.pageSize,
+          orderBy: this.orderBy, // Enviar el parámetro de orden
+        }
+      })
+      .then(response => {
+        // Ordenar las actividades por fecha antes de asignarlas
+        this.actividades = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        this.totalHoras = this.calcularTotalHoras(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener proyectos: ', error);
+      });
     },
     calcularTotalHoras(actividades) {
       return actividades.reduce((total, actividad) => total + parseFloat(actividad.hora), 0);
-    }
+    },
+    changePage(pageNumber) {
+      this.currentPage = pageNumber;
+      this.fetchProyectos();
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.fetchProyectos();
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.fetchProyectos();
+      }
+    },
   }
 };
 </script>
@@ -90,5 +141,20 @@ export default {
 <style scoped>
 .align-right {
   float: right;
+}
+
+/* H1*/
+h1 {
+  font-family: fantasy;
+}
+
+.titulo {
+  color: black;
+  /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f;
+  /* Color verde para la palabra "clientes" */
 }
 </style>

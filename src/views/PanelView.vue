@@ -1,7 +1,9 @@
 <template>
   <div>
     <HeaderCompo/>
-    <h1>Lista De Usuarios</h1>
+    
+    <h1 class="titulo">Listado De <span class="resaltado">Usuarios</span></h1>
+    <br>
     <div class="container">
       <table class="table table-hover">
         <thead>
@@ -74,6 +76,19 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-/* Aquí puedes agregar estilos si los necesitas */
+<style scoped>
+/* H1*/
+h1 {
+  font-family: fantasy;
+}
+
+.titulo {
+  color: black;
+  /* Color negro para la palabra "Lista" */
+}
+
+.resaltado {
+  color: #2bbb2f;
+  /* Color verde para la palabra "clientes" */
+}
 </style>
