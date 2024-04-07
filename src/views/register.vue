@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-          <div class="card border border-light-subtle rounded-3 shadow">
+          <div class="card border border-light-subtle rounded-3 shadow" style="width: 453.79px; height: 880.26px;">
             <!-- Agregué la clase "shadow" para aplicar sombreado -->
             <div class="card-body p-3 p-md-4 p-xl-5">
               <div class="text-center mb-3">

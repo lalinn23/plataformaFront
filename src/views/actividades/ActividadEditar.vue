@@ -64,12 +64,10 @@
                       placeholder="Horas dedicadas a la actividad" required>
                   </div>
                   <br>
-                  <div class="d-grid">
+                  <div class="d-grid gap-2 mb-2">
                     <button type="submit" class="btn btn-primary">Actualizar Actividad</button>
-                  </div>
-                  <br>
-                  <div class="d-grid">
                     <button type="button" class="btn btn-success" @click="salir">Atrás</button>
+                    <button type="submit" class="btn btn-danger" v-on:click="eliminarActividad()">Eliminar</button>
                   </div>
                   <br>
                   <br>
@@ -157,6 +155,17 @@
       },
       salir() {
         this.$router.push("/actividadView");
+      },
+      eliminarActividad(){
+        axios.delete(`http://127.0.0.1:8000/api/actividad/${this.idActividad}/`)
+         .then(response =>{
+          console.log('Actividad eliminado con exito: ', response.data);
+          this.$router.push('/actividadView');
+        })
+        .catch(error => {
+          console.error('Error al eliminar actividad: ', error);
+        });
+        
       },
       obtenerDatosActividad() {
         this.idActividad = this.$route.params.id;

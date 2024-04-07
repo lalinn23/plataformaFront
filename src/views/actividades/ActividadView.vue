@@ -15,10 +15,10 @@
               <th scope="col">Lider</th>
               <th scope="col">Consultor</th>
               <th scope="col">Fecha</th>
-              <th scope="col">proyecto</th>
+              <th scope="col">Proyecto</th>
               <th scope="col">Actividad</th>
               <th scope="col">Fase</th>
-              <th scope="col">etapa</th>
+              <th scope="col">Etapa</th>
               <th scope="col">Descripcion</th>
               <th scope="col">Horas</th>
             </tr>
